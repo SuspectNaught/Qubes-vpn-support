@@ -22,11 +22,9 @@ nft chain ip6 qubes forward '{ policy drop; }'
 nft insert rule ip6 qubes custom-forward oifgroup 1 drop
 nft insert rule ip6 qubes custom-forward iifgroup 1 drop
 
-# Accept forward traffic between dowstream (vif+, group 2) and VPN interface (group 9)
+# Accept forward traffic from dowstream (vif+, group 2) to VPN interface (group 9)
 nft insert rule ip qubes custom-forward iifgroup 2 oifgroup 9 accept
-nft insert rule ip qubes custom-forward iifgroup 9 oifgroup 2 accept
 nft insert rule ip6 qubes custom-forward iifgroup 2 oifgroup 9 accept
-nft insert rule ip6 qubes custom-forward iifgroup 9 oifgroup 2 accept
 
 # Block INPUT from tunnel(s):
 nft chain ip qubes input '{ policy drop; }'

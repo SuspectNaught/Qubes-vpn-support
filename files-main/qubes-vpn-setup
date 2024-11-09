@@ -53,7 +53,7 @@ firewall_link() {
 case "$1" in
 --check-firewall)
     for i in 1 2 3; do
-        if (nft -j -s list chain ip qubes custom-forward && nft -j -s list chain ip qubes custom-forward) | python3 -c "
+        if (nft -j -s list chain ip qubes custom-forward && nft -j -s list chain ip6 qubes custom-forward) | python3 -c "
 import sys, json;
 def main():
   rule_out_ipv4_exists = False

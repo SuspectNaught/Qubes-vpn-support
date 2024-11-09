@@ -73,11 +73,11 @@ up)
         if [[ ${#vpn_dns_ip4[@]} != 0 ]] && [[ ${#qubes_dns_ip4[@]} != 0 ]]; then
             for i in $(seq 0 $((${#qubes_dns_ip4[@]} - 1))); do
                 if [[ $i < ${#vpn_dns_ip4[@]} ]] ; then
-                    nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} tcp dport 53 dnat to ${vpn_dns_ip4[$i]}
                     nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} udp dport 53 dnat to ${vpn_dns_ip4[$i]}
+                    nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} tcp dport 53 dnat to ${vpn_dns_ip4[$i]}
                 else
-                    nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} tcp dport 53 dnat to ${vpn_dns_ip4[0]}
                     nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} udp dport 53 dnat to ${vpn_dns_ip4[0]}
+                    nft add rule ip qubes dnat-dns iifgroup 2 ip daddr ${qubes_dns_ip4[$i]} tcp dport 53 dnat to ${vpn_dns_ip4[0]}
                 fi
             done
         fi
@@ -85,11 +85,11 @@ up)
         if [[ ${#vpn_dns_ip6[@]} != 0 ]] && [[ ${#qubes_dns_ip6[@]} != 0 ]]; then
             for i in $(seq 0 $((${#qubes_dns_ip6[@]} - 1))); do
                 if [[ $i < ${#vpn_dns_ip6[@]} ]] ; then
-                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} tcp dport 53 dnat to ${qubes_dns_ip6[$i]}
-                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} udp dport 53 dnat to ${qubes_dns_ip6[$i]}
+                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} udp dport 53 dnat to ${vpn_dns_ip6[$i]}
+                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} tcp dport 53 dnat to ${vpn_dns_ip6[$i]}
                 else
-                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} tcp dport 53 dnat to ${qubes_dns_ip6[0]}
-                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} udp dport 53 dnat to ${qubes_dns_ip6[0]}
+                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} udp dport 53 dnat to ${vpn_dns_ip6[0]}
+                    nft add rule ip6 qubes dnat-dns iifgroup 2 ip6 daddr ${qubes_dns_ip6[$i]} tcp dport 53 dnat to ${vpn_dns_ip6[0]}
                 fi
             done
         fi
